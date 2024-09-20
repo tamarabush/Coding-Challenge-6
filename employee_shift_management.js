@@ -7,6 +7,8 @@ let employees = [
     {name: 'Lisa', shifts: [{day: 'Tuesday', hours: 9},]}
 ];
 
+
+
 //TASK 2 - Create a Function to Display Employee Shift Details:
 
 function displayEnployeeShifts (employees) {
@@ -18,12 +20,14 @@ function displayEnployeeShifts (employees) {
     //using the forEach and arrow method to locate the day shifts in the employees array
     })};
 
-displayEnployeeShifts(employees[0]);
+displayEnployeeShifts(employees[2]);
+
+
 
 //TASK 3 - Create a Function to Assign a New Shift:
 
-function assignShifts(employeeName, dayShift, hours) {
-    let employee = employees.find(e => e.name === employeeName);
+function assignShifts(employeeName, dayShift, numhours) {
+    let employee = employees.find(emp => emp.name === employeeName);
     //used find method to locate employee name in the array
 
     if (!employee) {
@@ -38,9 +42,9 @@ function assignShifts(employeeName, dayShift, hours) {
         return; 
     //if the shift already exists in the array that it will console an error
     }
-    employee.shifts.push({ day: dayShift, hours: hours });
+    employee.shifts.push({ day: dayShift, hours: numhours });
     //using the push method to input new shifts and hours 
-    console.log(`Shift is now assigned to ${employeeName} on ${dayShift} for ${hours} hours.`);
+    console.log(`Shift is now assigned to ${employeeName} on ${dayShift} for ${numhours} hours.`);
     //this will console a new shift for an employee if they are available 
 }
 assignShifts('Harry', 'Thursday', 9);
@@ -48,3 +52,24 @@ assignShifts('Lana', 'Monday', 6);
 assignShifts('Kanye', 'Thursday', 9);
 
 
+
+//TASK 4 - Create a Function to Calculate Total Hours Worked:
+
+function calculateTotalHours(employeeName) {
+    let employeeFind = employees.find(emp => emp.name === employeeName);
+    //using the find and arrow method to locate employee name
+
+    if (employeeFind) {
+        const totalNumHours = employeeFind.shifts.reduce((total, dayShift) => total + dayShift.hours, 0)
+        //using the reduce and arrow method to add the total amount of hours 
+        console.log(`${employeeName} has worked a a total of ${totalNumHours} hours`);
+        //this will console a message of the amount of hours worked 
+        return totalNumHours;
+    }
+};
+
+calculateTotalHours('Lana');
+
+
+
+//TASK 5 - 
